@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- constructor based dependency injection -->
+    <bean id="brain" class="com.accenture.classes.Brain" scope="prototype">  
+		<!-- declaring constructor argument by parameter name-->
+		<constructor-arg name="iq" value="110"/>
+		<!-- declaring constructor argument by parameter index-->
+		<constructor-arg index="1" value="1.5f"/>
+    </bean>
+
+    <bean id="heart" class="com.accenture.classes.Heart">  
+		<constructor-arg index="0" value="72"/>
+		<constructor-arg index="1" value="0.5f"/>
+		<constructor-arg index="2" value="99"/>
+    </bean>
+    
+    <!-- setter based dependency injection -->
+    <bean id="book" class="com.accenture.classes.Book">
+		<!-- declaring instance variable by variable name-->
+		<property name="name" value="Harry Potter"/>
+		<property name="author" value="J. K. Rowling"/>
+    </bean>
+    
+    <bean id="bike" class="com.accenture.classes.Bike">  
+		<property name="name" value="ninja1000"/>
+		<property name="mileage" value="42.195f"/>
+    </bean>
+    
+    <!-- constructor based dependency injection using bean reference-->
+    <bean id="person" class="com.accenture.classes.Person">  
+		<constructor-arg index="0" ref="brain"/>
+		<constructor-arg index="1" ref="heart"/>
+    </bean>
+    
+    <!-- dependency injection using bean reference, mix of constructor and setter-->
+    <bean id="student" class="com.accenture.classes.Student">  
+		<constructor-arg index="0" ref="brain"/>
+		<constructor-arg index="1" ref="heart"/>
+		<property name="bike" ref="bike"/>
+    </bean>
+    
+    <bean id="bookholder" class="com.accenture.classes.Bookholder">  
+		<constructor-arg ref="book"/>
+    </bean>
+    
+    <!-- simple bean declaration -->
+    <bean id="empty" class="com.accenture.classes.Empty"/>
+    
+</beans>
